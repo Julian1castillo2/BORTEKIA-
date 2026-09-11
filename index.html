@@ -1,0 +1,798 @@
+}<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BORTEKIA | Tecnología que impulsa tu negocio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0b0b0b;
+    --black-2:#161616;
+    --black-3:#212121;
+    --yellow:#FFD500;
+    --yellow-2:#e6c000;
+    --white:#ffffff;
+    --gray-light:#f4f4f4;
+    --gray:#a8a8a8;
+    --gray-dark:#5f5f5f;
+    --radius:14px;
+    --shadow:0 10px 30px rgba(0,0,0,.25);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Poppins',sans-serif;
+    background:var(--white);
+    color:var(--black);
+    overflow-x:hidden;
+  }
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;}
+  img{max-width:100%;display:block;}
+  .container{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+  section{padding:90px 0;}
+  h1,h2,h3,h4{font-weight:800;}
+  .eyebrow{
+    display:inline-block;
+    background:var(--yellow);
+    color:var(--black);
+    font-weight:700;
+    font-size:.75rem;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    padding:6px 14px;
+    border-radius:100px;
+    margin-bottom:16px;
+  }
+  .section-title{
+    font-size:2.2rem;
+    margin-bottom:14px;
+    line-height:1.2;
+  }
+  .section-title span{color:var(--yellow);-webkit-text-stroke:1px var(--black);}
+  .section-sub{
+    color:var(--gray-dark);
+    max-width:640px;
+    margin-bottom:50px;
+    font-size:1.05rem;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:14px 28px;
+    border-radius:100px;
+    font-weight:700;
+    font-size:.95rem;
+    cursor:pointer;
+    border:2px solid transparent;
+    transition:.25s ease;
+  }
+  .btn-primary{background:var(--yellow);color:var(--black);}
+  .btn-primary:hover{background:var(--yellow-2);transform:translateY(-2px);}
+  .btn-outline{background:transparent;border-color:var(--white);color:var(--white);}
+  .btn-outline:hover{background:var(--white);color:var(--black);}
+  .btn-dark{background:var(--black);color:var(--yellow);}
+  .btn-dark:hover{background:var(--black-3);}
+
+  /* ---------- NAVBAR ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;
+    background:rgba(11,11,11,.95);
+    backdrop-filter:blur(6px);
+    z-index:1000;
+    border-bottom:2px solid var(--yellow);
+  }
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 24px;
+    max-width:1180px;margin:0 auto;
+  }
+  .logo{
+    font-size:1.4rem;font-weight:800;color:var(--white);
+    letter-spacing:1px;
+  }
+  .logo span{color:var(--yellow);}
+  .nav-links{display:flex;gap:32px;}
+  .nav-links a{
+    color:var(--white);font-weight:500;font-size:.95rem;
+    position:relative;transition:.2s;
+  }
+  .nav-links a::after{
+    content:'';position:absolute;bottom:-6px;left:0;
+    width:0;height:2px;background:var(--yellow);transition:.25s;
+  }
+  .nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+  .nav-links a:hover{color:var(--yellow);}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+  .burger span{width:26px;height:3px;background:var(--yellow);border-radius:2px;}
+
+  @media(max-width:860px){
+    .nav-links{
+      position:fixed;top:64px;left:0;right:0;
+      background:var(--black);
+      flex-direction:column;
+      padding:20px 24px;gap:18px;
+      transform:translateY(-150%);
+      transition:.3s ease;
+      border-bottom:2px solid var(--yellow);
+    }
+    .nav-links.open{transform:translateY(0);}
+    .burger{display:flex;}
+  }
+
+  /* ---------- PROMO STRIP ---------- */
+  .promo-strip{
+    margin-top:80px;
+    background:var(--yellow);
+    color:var(--black);
+    text-align:center;
+    padding:14px 20px;
+    font-weight:700;
+    font-size:.95rem;
+    display:flex;flex-wrap:wrap;gap:14px;
+    align-items:center;justify-content:center;
+  }
+  .promo-strip .countdown{display:flex;gap:6px;align-items:center;}
+  .promo-strip .countdown span{
+    background:var(--black);color:var(--yellow);
+    padding:5px 9px;border-radius:6px;font-weight:800;
+    min-width:36px;text-align:center;font-size:.9rem;
+  }
+  .promo-strip .cd-label{font-size:.7rem;font-weight:600;color:var(--black);}
+  .promo-strip a.btn{padding:8px 18px;font-size:.8rem;background:var(--black);color:var(--yellow);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:
+      radial-gradient(circle at 20% 20%, rgba(255,213,0,.08), transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(255,213,0,.06), transparent 40%),
+      var(--black);
+    color:var(--white);
+    padding:110px 0 110px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:'';
+    position:absolute;inset:0;
+    background-image:linear-gradient(rgba(255,213,0,.05) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,213,0,.05) 1px, transparent 1px);
+    background-size:40px 40px;
+    mask-image:radial-gradient(circle at center, black, transparent 75%);
+  }
+  .hero-content{position:relative;z-index:2;max-width:720px;}
+  .hero h1{
+    font-size:3.2rem;line-height:1.1;margin-bottom:20px;
+  }
+  .hero h1 span{color:var(--yellow);}
+  .hero p.tagline{
+    font-size:1.2rem;color:var(--gray);margin-bottom:14px;font-weight:500;
+  }
+  .hero p.propuesta{
+    font-size:1.05rem;color:#d8d8d8;margin-bottom:36px;max-width:600px;
+  }
+  .hero-btns{display:flex;gap:16px;flex-wrap:wrap;}
+  .hero-stats{
+    display:flex;gap:40px;margin-top:60px;flex-wrap:wrap;
+  }
+  .hero-stats div{border-left:3px solid var(--yellow);padding-left:14px;}
+  .hero-stats strong{display:block;font-size:1.6rem;color:var(--yellow);}
+  .hero-stats span{font-size:.85rem;color:var(--gray);}
+
+  /* ---------- SERVICIOS ---------- */
+  .services-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:24px;
+  }
+  .service-card{
+    background:var(--white);
+    border:2px solid var(--black);
+    border-radius:var(--radius);
+    padding:28px;
+    transition:.25s ease;
+    position:relative;
+    overflow:hidden;
+    opacity:0;transform:translateY(30px);
+  }
+  .service-card.visible{opacity:1;transform:translateY(0);}
+  .service-card:hover{box-shadow:var(--shadow);transform:translateY(-6px);}
+  .service-card .icon{font-size:2.2rem;margin-bottom:14px;}
+  .service-card .badge{
+    position:absolute;top:16px;right:16px;
+    background:var(--black);color:var(--yellow);
+    font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:100px;
+  }
+  .service-card h3{font-size:1.25rem;margin-bottom:4px;}
+  .service-card .subtitle{color:var(--gray-dark);font-size:.85rem;margin-bottom:12px;}
+  .service-card .price{
+    display:inline-block;background:var(--yellow);color:var(--black);
+    font-weight:700;padding:6px 14px;border-radius:8px;margin-bottom:14px;font-size:.9rem;
+  }
+  .service-card .desc{font-size:.92rem;color:#333;margin-bottom:16px;}
+  .toggle-btn{
+    background:none;border:none;color:var(--black);font-weight:700;
+    cursor:pointer;display:flex;align-items:center;gap:6px;font-size:.9rem;
+    padding:0;
+  }
+  .toggle-btn .arrow{transition:.25s;}
+  .toggle-btn.open .arrow{transform:rotate(180deg);}
+  .accordion-content{
+    max-height:0;overflow:hidden;transition:max-height .35s ease;
+  }
+  .accordion-content ul{margin-top:14px;padding-left:0;}
+  .accordion-content li{
+    font-size:.88rem;padding:6px 0 6px 22px;position:relative;color:#333;
+    border-bottom:1px dashed #eee;
+  }
+  .accordion-content li::before{
+    content:'✓';position:absolute;left:0;color:var(--yellow-2);font-weight:800;
+    background:var(--black);border-radius:50%;width:16px;height:16px;
+    display:flex;align-items:center;justify-content:center;font-size:.6rem;top:8px;
+  }
+  .accordion-content .extra{
+    margin-top:12px;font-size:.85rem;font-style:italic;color:var(--gray-dark);
+  }
+  .accordion-content .warning{
+    margin-top:12px;background:#fff8dc;border-left:4px solid var(--yellow-2);
+    padding:10px 14px;font-size:.82rem;border-radius:6px;
+  }
+
+  /* ---------- CARE PLANS ---------- */
+  .care-section{background:var(--black);color:var(--white);}
+  .care-section .section-sub{color:var(--gray);}
+  .plans-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:24px;
+  }
+  .plan-card{
+    background:var(--black-2);
+    border:2px solid var(--black-3);
+    border-radius:var(--radius);
+    padding:32px 26px;
+    text-align:center;
+    position:relative;
+    transition:.25s;
+    opacity:0;transform:translateY(30px);
+  }
+  .plan-card.visible{opacity:1;transform:translateY(0);}
+  .plan-card:hover{border-color:var(--yellow);transform:translateY(-6px);}
+  .plan-card.recommended{
+    border-color:var(--yellow);
+    background:linear-gradient(180deg,var(--black-2),#1c1c00);
+  }
+  .plan-card .ribbon{
+    position:absolute;top:-14px;left:50%;transform:translateX(-50%);
+    background:var(--yellow);color:var(--black);
+    padding:5px 16px;border-radius:100px;font-size:.75rem;font-weight:800;
+  }
+  .plan-card h3{font-size:1.3rem;color:var(--yellow);margin-bottom:6px;}
+  .plan-card .plan-price{font-size:1.8rem;font-weight:800;margin:14px 0;}
+  .plan-card .plan-price small{font-size:.9rem;color:var(--gray);font-weight:400;}
+  .plan-card ul{text-align:left;margin:20px 0;}
+  .plan-card li{
+    padding:8px 0;font-size:.88rem;color:#ddd;
+    border-bottom:1px solid #2a2a2a;
+    display:flex;gap:8px;align-items:flex-start;
+  }
+  .plan-card li::before{content:'⚡';color:var(--yellow);}
+
+  /* ---------- BENEFICIOS (contadores) ---------- */
+  .benefits-section{background:var(--gray-light);}
+  .benefits-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:24px;
+  }
+  .benefit-card{
+    background:var(--black);color:var(--white);
+    border-radius:var(--radius);
+    padding:36px 24px;text-align:center;
+    border:2px solid var(--black);
+    transition:.3s ease;
+    opacity:0;transform:translateY(30px);
+  }
+  .benefit-card.visible{opacity:1;transform:translateY(0);}
+  .benefit-card:hover{border-color:var(--yellow);transform:translateY(-8px);}
+  .benefit-card .icon{font-size:2.4rem;margin-bottom:10px;}
+  .benefit-card .counter{
+    font-size:2.6rem;font-weight:800;color:var(--yellow);
+    display:flex;justify-content:center;align-items:baseline;gap:2px;
+  }
+  .benefit-card .label{font-size:.88rem;color:var(--gray);margin-top:8px;}
+
+  /* ---------- TESTIMONIOS ---------- */
+  .testimonial-wrap{max-width:720px;margin:0 auto;position:relative;}
+  .testimonial-track{overflow:hidden;border-radius:var(--radius);}
+  .testimonial-slides{display:flex;transition:transform .5s ease;}
+  .testimonial-slide{
+    min-width:100%;background:var(--white);
+    border:2px solid var(--black);border-radius:var(--radius);
+    padding:44px;text-align:center;
+  }
+  .testimonial-slide .stars{color:var(--yellow-2);font-size:1.3rem;margin-bottom:16px;letter-spacing:4px;}
+  .testimonial-slide p{font-size:1.08rem;font-style:italic;margin-bottom:22px;color:#333;line-height:1.5;}
+  .testimonial-slide .author{font-weight:800;font-size:1rem;}
+  .testimonial-slide .role{font-size:.85rem;color:var(--gray-dark);}
+  .testimonial-dots{display:flex;justify-content:center;gap:10px;margin-top:26px;}
+  .dot{width:12px;height:12px;border-radius:50%;background:#ddd;cursor:pointer;transition:.25s;border:none;}
+  .dot.active{background:var(--yellow);transform:scale(1.3);}
+  .testimonial-arrows button{
+    position:absolute;top:50%;transform:translateY(-50%);
+    background:var(--black);color:var(--yellow);border:none;
+    width:46px;height:46px;border-radius:50%;font-size:1.2rem;cursor:pointer;
+    z-index:5;transition:.2s;
+  }
+  .testimonial-arrows button:hover{background:var(--yellow);color:var(--black);}
+  .arrow-prev{left:-56px;}
+  .arrow-next{right:-56px;}
+  @media(max-width:820px){
+    .arrow-prev{left:6px;}
+    .arrow-next{right:6px;}
+    .testimonial-slide{padding:30px 22px;}
+  }
+
+  /* ---------- CONTACTO ---------- */
+  .contact-wrap{
+    display:grid;grid-template-columns:1fr 1fr;gap:50px;
+  }
+  form{display:flex;flex-direction:column;gap:14px;}
+  input,select,textarea{
+    padding:14px;border:2px solid #ddd;border-radius:10px;
+    font-family:inherit;font-size:.95rem;transition:.2s;
+  }
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--yellow-2);}
+  textarea{resize:vertical;min-height:100px;}
+  .success-msg{
+    display:none;background:#eafbe7;border-left:4px solid #2ecc71;
+    padding:14px;border-radius:8px;font-size:.9rem;color:#1e7e34;
+  }
+  .success-msg.show{display:block;}
+  .contact-info{
+    background:var(--black);color:var(--white);border-radius:var(--radius);
+    padding:36px;
+  }
+  .contact-info h3{color:var(--yellow);margin-bottom:16px;}
+  .contact-info p{margin-bottom:10px;color:var(--gray);font-size:.95rem;}
+  @media(max-width:860px){.contact-wrap{grid-template-columns:1fr;}}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--black);color:var(--gray);padding:40px 0;text-align:center;}
+  footer .logo{margin-bottom:10px;}
+  footer small{font-size:.8rem;}
+
+  /* ---------- WHATSAPP FLOAT ---------- */
+  .wa-float{
+    position:fixed;bottom:24px;right:24px;
+    width:60px;height:60px;background:var(--yellow);
+    border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-size:1.8rem;box-shadow:var(--shadow);cursor:pointer;z-index:999;
+    transition:.25s;animation:pulse 2.5s infinite;
+  }
+  .wa-float:hover{transform:scale(1.1);}
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(255,213,0,.6);}
+    70%{box-shadow:0 0 0 16px rgba(255,213,0,0);}
+    100%{box-shadow:0 0 0 0 rgba(255,213,0,0);}
+  }
+
+  .reveal{opacity:0;transform:translateY(30px);transition:.6s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#home" class="logo">BORTEK<span>IA</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Inicio</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#care">Care</a></li>
+      <li><a href="#beneficios">Beneficios</a></li>
+      <li><a href="#testimonios">Testimonios</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <div class="burger" id="burger"><span></span><span></span><span></span></div>
+  </nav>
+</header>
+
+<!-- PROMO STRIP -->
+<div class="promo-strip">
+  <span>🎯 Diagnóstico BORTEKIA CHECK con precio especial esta semana</span>
+  <div class="countdown">
+    <div class="cd-label">Termina en:</div>
+    <span id="cd-hours">47</span>:<span id="cd-minutes">59</span>:<span id="cd-seconds">59</span>
+  </div>
+  <a href="#contacto" class="btn">Reclamar oferta 🔥</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="container hero-content">
+    <span class="eyebrow">Soporte TI · Digitalización · Automatización</span>
+    <h1>Tecnología que <span>impulsa</span> tu negocio.</h1>
+    <p class="tagline">BORTEKIA</p>
+    <p class="propuesta">Ayudamos a pequeñas y medianas empresas a mantener su tecnología organizada, segura y funcionando, mediante soporte TI, digitalización, automatización y soluciones empresariales.</p>
+    <div class="hero-btns">
+      <a href="#servicios" class="btn btn-primary">Ver catálogo de servicios</a>
+      <a href="#contacto" class="btn btn-outline">Diagnóstico desde $99.900</a>
+    </div>
+    <div class="hero-stats">
+      <div><strong>6</strong><span>Servicios especializados</span></div>
+      <div><strong>3</strong><span>Planes de soporte mensual</span></div>
+      <div><strong>100%</strong><span>Enfoque en PYMES</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="container">
+    <span class="eyebrow">Catálogo oficial · V1</span>
+    <h2 class="section-title">Nuestros <span>servicios</span></h2>
+    <p class="section-sub">Desde el diagnóstico inicial hasta la gestión tecnológica completa de tu empresa. Haz clic en cada tarjeta para ver todo lo que incluye.</p>
+    <div class="services-grid" id="servicesGrid"></div>
+  </div>
+</section>
+
+<!-- CARE -->
+<section id="care" class="care-section">
+  <div class="container">
+    <span class="eyebrow">El producto que queremos escalar</span>
+    <h2 class="section-title">BORTEKIA <span>CARE</span></h2>
+    <p class="section-sub">Soporte TI mensual para que nunca más te preocupes por tu tecnología. Elige el plan según el tamaño y necesidades de tu empresa.</p>
+    <div class="plans-grid" id="plansGrid"></div>
+  </div>
+</section>
+
+<!-- BENEFICIOS -->
+<section id="beneficios" class="benefits-section">
+  <div class="container">
+    <span class="eyebrow">Resultados que hablan solos</span>
+    <h2 class="section-title">¿Por qué elegir <span>BORTEKIA</span>?</h2>
+    <p class="section-sub">Empresas que confían en nosotros logran más estabilidad, más seguridad y menos dolores de cabeza tecnológicos.</p>
+    <div class="benefits-grid" id="benefitsGrid"></div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section id="testimonios">
+  <div class="container">
+    <span class="eyebrow">Lo que dicen nuestros clientes</span>
+    <h2 class="section-title">Historias de <span>éxito</span></h2>
+    <p class="section-sub">Empresas reales, resultados reales.</p>
+    <div class="testimonial-wrap">
+      <div class="testimonial-arrows">
+        <button class="arrow-prev" id="prevBtn">‹</button>
+        <button class="arrow-next" id="nextBtn">›</button>
+      </div>
+      <div class="testimonial-track">
+        <div class="testimonial-slides" id="testimonialSlides"></div>
+      </div>
+      <div class="testimonial-dots" id="testimonialDots"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" style="background:var(--gray-light);">
+  <div class="container">
+    <span class="eyebrow">Hablemos</span>
+    <h2 class="section-title">Solicita tu <span>diagnóstico</span></h2>
+    <p class="section-sub">Completa el formulario y se abrirá WhatsApp automáticamente con tu solicitud lista para enviar.</p>
+    <div class="contact-wrap">
+      <form id="contactForm">
+        <input type="text" id="nombre" placeholder="Nombre completo" required>
+        <input type="text" id="empresa" placeholder="Empresa" required>
+        <input type="email" id="correo" placeholder="Correo electrónico" required>
+        <input type="tel" id="telefono" placeholder="Teléfono / WhatsApp" required>
+        <select id="serviceSelect" required>
+          <option value="">¿Qué servicio te interesa?</option>
+          <option>BORTEKIA CHECK</option>
+          <option>BORTEKIA OPTIMIZE</option>
+          <option>BORTEKIA OFFICE</option>
+          <option>BORTEKIA SHIELD</option>
+          <option>BORTEKIA CONTROL</option>
+          <option>CARE START</option>
+          <option>CARE BUSINESS</option>
+          <option>CARE PRO</option>
+        </select>
+        <textarea id="mensaje" placeholder="Cuéntanos brevemente tu necesidad..."></textarea>
+        <button type="submit" class="btn btn-primary">📲 Enviar por WhatsApp</button>
+        <div class="success-msg" id="successMsg">✅ ¡Listo! Se abrió WhatsApp con tu solicitud. Solo confirma el envío del mensaje.</div>
+      </form>
+      <div class="contact-info">
+        <h3>Contacto directo</h3>
+        <p>📧 contacto@bortekia.com</p>
+        <p>📱 WhatsApp: +57 324 314 4736</p>
+        <p>📍 Atención remota y presencial</p>
+        <p style="margin-top:20px;color:var(--white);font-weight:600;">Comienza con BORTEKIA CHECK desde $99.900 y descubre en qué estado está tu tecnología.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="logo">BORTEK<span style="color:var(--yellow);">IA</span></div>
+    <small>© 2024 BORTEKIA. Tecnología que impulsa tu negocio.</small>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/573243144736" target="_blank" title="Escríbenos por WhatsApp">💬</a>
+
+<script>
+/* ================= DATA: SERVICIOS ================= */
+const services = [
+  {
+    icon:'🔎', name:'BORTEKIA CHECK', subtitle:'Diagnóstico tecnológico',
+    price:'Desde $99.900', badge:'Producto de entrada',
+    desc:'Para empresas que no saben exactamente qué tan bien está funcionando su infraestructura.',
+    items:['Inventario básico de equipos','Revisión de computadores','Software y actualizaciones','Antivirus','Usuarios y accesos','Backups','Red / Wi-Fi','Identificación de riesgos','Recomendaciones'],
+    extra:'📄 Entregable: Informe de diagnóstico + prioridades de mejora.'
+  },
+  {
+    icon:'🖥️', name:'BORTEKIA OPTIMIZE', subtitle:'Puesta a punto tecnológica',
+    price:'Desde $149.900 por equipo',
+    desc:'Para computadores lentos, desactualizados o mal configurados.',
+    items:['Optimización de Windows','Actualizaciones','Configuración de software','Revisión de almacenamiento','Configuración de impresoras','Navegadores','Office','Revisión básica de seguridad'],
+    extra:'💡 Ideal para: oficinas, restaurantes y comercios.'
+  },
+  {
+    icon:'☁️', name:'BORTEKIA OFFICE', subtitle:'Digitalización de oficina',
+    price:'Desde $399.900',
+    desc:'Para empresas que tienen archivos, usuarios y procesos desorganizados.',
+    items:['Google Workspace / Microsoft 365','Organización de Drive / OneDrive','Estructura de carpetas','Gestión básica de usuarios','Permisos','Formularios','Documentación','Buenas prácticas de colaboración']
+  },
+  {
+    icon:'🔐', name:'BORTEKIA SHIELD', subtitle:'Seguridad empresarial básica',
+    price:'Desde $499.900',
+    desc:'Aquí empezamos a diferenciarnos del técnico tradicional.',
+    items:['Revisión de antivirus','Usuarios y permisos','Contraseñas y accesos','Actualizaciones','Backups','Revisión de equipos','Políticas básicas','Identificación de riesgos','Plan de recomendaciones'],
+    warning:'⚠️ No se vende como "ciberseguridad avanzada" mientras no tengamos las certificaciones, herramientas y alcance necesarios.'
+  },
+  {
+    icon:'📊', name:'BORTEKIA CONTROL', subtitle:'Inventario + automatización',
+    price:'Desde $599.900', badge:'Producto estrella',
+    desc:'Creamos soluciones con Excel + Google Sheets + Forms + dashboards + automatizaciones. Ej: Empleado → Equipo → Serial → Marca → Modelo → Ubicación → Estado → Historial.',
+    items:['📱 Celulares','🖨️ Impresoras','💻 Portátiles','📦 Periféricos','🔧 Mantenimientos']
+  },
+  {
+    icon:'🔄', name:'BORTEKIA CARE', subtitle:'Soporte TI mensual',
+    price:'Desde $299.900/mes', badge:'Prioridad de escalamiento',
+    desc:'El producto que nos interesa escalar como ingreso recurrente. Revisa los planes completos en la sección CARE.',
+    items:['Soporte remoto y/o presencial','Atención de incidentes','Mantenimiento preventivo','Gestión de inventario y seguridad','Reportes mensuales']
+  }
+];
+
+const plans = [
+  {
+    name:'CARE START', price:'$299.900', period:'/mes',
+    items:['Soporte remoto','Atención de incidentes','Asesoría básica','Mantenimiento preventivo','Reporte mensual'],
+    recommended:false
+  },
+  {
+    name:'CARE BUSINESS', price:'$599.900', period:'/mes',
+    items:['Todo lo de CARE START','Soporte prioritario','Visitas programadas','Gestión de inventario','Seguridad básica','Gestión de usuarios','Reporte mensual'],
+    recommended:true
+  },
+  {
+    name:'CARE PRO', price:'Desde $999.900', period:'/mes',
+    items:['Soporte remoto + presencial','Gestión tecnológica','Inventario','Seguridad','Backups','Documentación','Reportes','Planificación tecnológica'],
+    recommended:false
+  }
+];
+
+/* ================= DATA: BENEFICIOS ================= */
+const benefits = [
+  {icon:'⚡', target:98, suffix:'%', label:'Incidentes resueltos remotamente'},
+  {icon:'⏱️', target:2, suffix:'h', label:'Tiempo promedio de respuesta'},
+  {icon:'🔒', target:100, suffix:'%', label:'Equipos con backup verificado'},
+  {icon:'📈', target:35, suffix:'%', label:'Reducción de fallas tras 3 meses'}
+];
+
+/* ================= DATA: TESTIMONIOS ================= */
+const testimonials = [
+  {stars:'★★★★★', text:'"Con BORTEKIA CHECK descubrimos que teníamos 3 equipos sin backup. Hoy todo está bajo control con CARE BUSINESS."', author:'Laura Méndez', role:'Gerente Administrativa, Distribuidora LM'},
+  {stars:'★★★★★', text:'"El BORTEKIA CONTROL nos organizó el inventario de 40 equipos en una semana. Ya no perdemos tiempo buscando seriales."', author:'Carlos Rojas', role:'Jefe de Operaciones, Constructora RG'},
+  {stars:'★★★★★', text:'"Pasamos de llamar a un técnico cada vez que algo fallaba, a tener soporte mensual real con BORTEKIA CARE PRO."', author:'Andrea Torres', role:'Directora, Clínica Vital+'}
+];
+
+/* ================= RENDER SERVICES ================= */
+const servicesGrid = document.getElementById('servicesGrid');
+services.forEach((s)=>{
+  const card = document.createElement('div');
+  card.className='service-card';
+  card.innerHTML = `
+    ${s.badge?`<span class="badge">${s.badge}</span>`:''}
+    <div class="icon">${s.icon}</div>
+    <h3>${s.name}</h3>
+    <div class="subtitle">${s.subtitle}</div>
+    <span class="price">${s.price}</span>
+    <p class="desc">${s.desc}</p>
+    <button class="toggle-btn"><span>Ver qué incluye</span><span class="arrow">▼</span></button>
+    <div class="accordion-content">
+      <ul>${s.items.map(it=>`<li>${it}</li>`).join('')}</ul>
+      ${s.extra?`<div class="extra">${s.extra}</div>`:''}
+      ${s.warning?`<div class="warning">${s.warning}</div>`:''}
+    </div>
+  `;
+  servicesGrid.appendChild(card);
+
+  const btn = card.querySelector('.toggle-btn');
+  const content = card.querySelector('.accordion-content');
+  btn.addEventListener('click',()=>{
+    const isOpen = btn.classList.toggle('open');
+    content.style.maxHeight = isOpen ? content.scrollHeight+'px' : 0;
+    btn.querySelector('span').textContent = isOpen ? 'Ocultar detalles' : 'Ver qué incluye';
+  });
+});
+
+/* ================= RENDER PLANS ================= */
+const plansGrid = document.getElementById('plansGrid');
+plans.forEach(p=>{
+  const card = document.createElement('div');
+  card.className = 'plan-card' + (p.recommended?' recommended':'');
+  card.innerHTML = `
+    ${p.recommended?'<span class="ribbon">Más elegido</span>':''}
+    <h3>${p.name}</h3>
+    <div class="plan-price">${p.price}<small>${p.period}</small></div>
+    <ul>${p.items.map(it=>`<li>${it}</li>`).join('')}</ul>
+    <button class="btn btn-primary select-plan" data-plan="${p.name}">Quiero este plan</button>
+  `;
+  plansGrid.appendChild(card);
+});
+plansGrid.addEventListener('click', e=>{
+  if(e.target.classList.contains('select-plan')){
+    const planName = e.target.dataset.plan;
+    document.getElementById('serviceSelect').value = planName;
+    document.getElementById('contacto').scrollIntoView({behavior:'smooth'});
+  }
+});
+
+/* ================= RENDER BENEFICIOS (contadores) ================= */
+const benefitsGrid = document.getElementById('benefitsGrid');
+benefits.forEach(b=>{
+  const card = document.createElement('div');
+  card.className='benefit-card';
+  card.innerHTML = `
+    <div class="icon">${b.icon}</div>
+    <div class="counter" data-target="${b.target}" data-suffix="${b.suffix}">0${b.suffix}</div>
+    <div class="label">${b.label}</div>
+  `;
+  benefitsGrid.appendChild(card);
+});
+
+/* ================= RENDER TESTIMONIOS ================= */
+const slidesWrap = document.getElementById('testimonialSlides');
+const dotsWrap = document.getElementById('testimonialDots');
+testimonials.forEach((t,i)=>{
+  const slide = document.createElement('div');
+  slide.className='testimonial-slide';
+  slide.innerHTML = `
+    <div class="stars">${t.stars}</div>
+    <p>${t.text}</p>
+    <div class="author">${t.author}</div>
+    <div class="role">${t.role}</div>
+  `;
+  slidesWrap.appendChild(slide);
+
+  const dot = document.createElement('button');
+  dot.className='dot'+(i===0?' active':'');
+  dot.addEventListener('click',()=>goToSlide(i));
+  dotsWrap.appendChild(dot);
+});
+
+let currentSlide = 0;
+function goToSlide(i){
+  currentSlide = (i + testimonials.length) % testimonials.length;
+  slidesWrap.style.transform = `translateX(-${currentSlide*100}%)`;
+  document.querySelectorAll('.dot').forEach((d,idx)=>d.classList.toggle('active', idx===currentSlide));
+}
+document.getElementById('prevBtn').addEventListener('click',()=>goToSlide(currentSlide-1));
+document.getElementById('nextBtn').addEventListener('click',()=>goToSlide(currentSlide+1));
+setInterval(()=>goToSlide(currentSlide+1), 6000);
+
+/* ================= NAV MOBILE ================= */
+const burger = document.getElementById('burger');
+const navLinks = document.getElementById('navLinks');
+burger.addEventListener('click',()=>navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
+
+/* ================= SCROLL REVEAL + COUNTERS ================= */
+function animateCounter(el){
+  const target = parseInt(el.dataset.target);
+  const suffix = el.dataset.suffix || '';
+  let current = 0;
+  const step = Math.max(1, Math.ceil(target/50));
+  const interval = setInterval(()=>{
+    current += step;
+    if(current >= target){ current = target; clearInterval(interval); }
+    el.textContent = current + suffix;
+  }, 25);
+}
+
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+      const counter = entry.target.querySelector('.counter');
+      if(counter && !counter.dataset.done){
+        counter.dataset.done = 'true';
+        animateCounter(counter);
+      }
+    }
+  });
+},{threshold:0.2});
+document.querySelectorAll('.service-card, .plan-card, .benefit-card').forEach(el=>observer.observe(el));
+
+/* ================= NAV ACTIVE LINK ================= */
+const sections = document.querySelectorAll('section[id]');
+const navA = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', ()=>{
+  let current='';
+  sections.forEach(sec=>{
+    const top = sec.offsetTop - 100;
+    if(pageYOffset >= top) current = sec.getAttribute('id');
+  });
+  navA.forEach(a=>{
+    a.classList.toggle('active', a.getAttribute('href')==='#'+current);
+  });
+});
+
+/* ================= COUNTDOWN PROMO ================= */
+let totalSeconds = 47*3600 + 59*60 + 59;
+function updateCountdown(){
+  if(totalSeconds <= 0) totalSeconds = 47*3600 + 59*60 + 59;
+  const h = Math.floor(totalSeconds/3600);
+  const m = Math.floor((totalSeconds%3600)/60);
+  const s = totalSeconds%60;
+  document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+  document.getElementById('cd-minutes').textContent = String(m).padStart(2,'0');
+  document.getElementById('cd-seconds').textContent = String(s).padStart(2,'0');
+  totalSeconds--;
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+/* ================= FORM -> WHATSAPP ================= */
+document.getElementById('contactForm').addEventListener('submit', function(e){
+  e.preventDefault();
+
+  const nombre = document.getElementById('nombre').value;
+  const empresa = document.getElementById('empresa').value;
+  const correo = document.getElementById('correo').value;
+  const telefono = document.getElementById('telefono').value;
+  const servicio = document.getElementById('serviceSelect').value;
+  const mensaje = document.getElementById('mensaje').value;
+
+  const whatsappNumber = '573243144736';
+  const texto =
+`Hola BORTEKIA! 👋 Quiero solicitar información:
+
+👤 Nombre: ${nombre}
+🏢 Empresa: ${empresa}
+📧 Correo: ${correo}
+📱 Teléfono: ${telefono}
+🛠️ Servicio de interés: ${servicio}
+📝 Mensaje: ${mensaje || 'Sin comentarios adicionales'}`;
+
+  const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(texto)}`;
+  window.open(url, '_blank');
+
+  document.getElementById('successMsg').classList.add('show');
+  this.reset();
+  setTimeout(()=>document.getElementById('successMsg').classList.remove('show'), 6000);
+});
+</script>
+</body>
+</html>
